@@ -1,5 +1,10 @@
 <?php
 
+use Faker\Factory;
+
+/**
+ * Class ApplicationContext
+ */
 class ApplicationContext
 {
     use SingletonTrait;
@@ -13,19 +18,28 @@ class ApplicationContext
      */
     private $currentUser;
 
+    /**
+     * ApplicationContext constructor.
+     */
     protected function __construct()
     {
-        $faker = \Faker\Factory::create();
+        $faker = Factory::create();
         $this->currentSite = new Site($faker->randomNumber(), $faker->url);
         $this->currentUser = new User($faker->randomNumber(), $faker->firstName, $faker->lastName, $faker->email);
     }
 
-    public function getCurrentSite()
+    /**
+     * @return Site
+     */
+    public function getCurrentSite(): Site
     {
         return $this->currentSite;
     }
 
-    public function getCurrentUser()
+    /**
+     * @return User
+     */
+    public function getCurrentUser(): User
     {
         return $this->currentUser;
     }
