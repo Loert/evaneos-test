@@ -10,10 +10,16 @@ require_once __DIR__ . '/../src/TemplateManager.php';
 class TemplateManagerTest extends PHPUnit_Framework_TestCase
 {
     /**
+     * @var TemplateManager
+     */
+    private $templateManager;
+
+    /**
      * Init the mocks
      */
     public function setUp(): void
     {
+        $this->templateManager = new TemplateManager();
     }
 
     /**
@@ -26,10 +32,9 @@ class TemplateManagerTest extends PHPUnit_Framework_TestCase
     /**
      * @test
      */
-    public function test()
+    public function testGetTemplateComputedOnSuccess()
     {
         $faker = Factory::create();
-
         $expectedDestination = DestinationRepository::getInstance()->getById($faker->randomNumber());
         $expectedUser = ApplicationContext::getInstance()->getCurrentUser();
 
@@ -48,9 +53,8 @@ Bien cordialement,
 L'équipe Evaneos.com
 www.evaneos.com
 ");
-        $templateManager = new TemplateManager();
 
-        $message = $templateManager->getTemplateComputed(
+        $message = $this->templateManager->getTemplateComputed(
             $template,
             [
                 'quote' => $quote
@@ -68,5 +72,11 @@ Bien cordialement,
 L'équipe Evaneos.com
 www.evaneos.com
 ", $message->content);
+    }
+
+    public function testGetTemplateComputedOnRuntimeException(){
+        $this->expectException('RuntimeException');
+
+        $this->templateManager->getTemplateComputed(null, []);
     }
 }

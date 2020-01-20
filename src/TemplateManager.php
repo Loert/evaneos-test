@@ -2,7 +2,7 @@
 
 use App\Entity\Template;
 use App\Entity\Quote;
-use App\Repository\QuoteRepository;
+use App\Entity\User;
 use App\Repository\SiteRepository;
 use App\Repository\DestinationRepository;
 
@@ -12,11 +12,11 @@ use App\Repository\DestinationRepository;
 class TemplateManager
 {
     /**
-     * @param Template $template
+     * @param Template|null $template
      * @param array $data
      * @return Template
      */
-    public function getTemplateComputed(Template $template, array $data): Template
+    public function getTemplateComputed(?Template $template, array $data): Template
     {
         if (!$template) {
             throw new RuntimeException('No template given');
@@ -30,11 +30,11 @@ class TemplateManager
     }
 
     /**
-     * @param $text
+     * @param string $text
      * @param array $data
-     * @return mixed
+     * @return string
      */
-    private function computeText(string $text, array $data)
+    private function computeText(string $text, array $data): string
     {
         $applicationContext = ApplicationContext::getInstance();
 
