@@ -1,10 +1,14 @@
 <?php
 
+namespace App\Manager;
+
 use App\Entity\Template;
 use App\Entity\Quote;
 use App\Entity\User;
 use App\Repository\SiteRepository;
 use App\Repository\DestinationRepository;
+use RuntimeException;
+use App\ApplicationContext;
 
 /**
  * Class TemplateManager
@@ -52,13 +56,15 @@ class TemplateManager
         if (isset($destination)) {
             $replaceData = $site->url . '/' . $destination->countryName . '/quote/' . $quote->id;
             $this->replaceText('[quote:destination_link]', $replaceData, $text);
-        }
-        else {
+        } else {
             $this->replaceText('[quote:destination_link]', '', $text);
         }
 
-        $user = (isset($data['user']) && $data['user']  instanceof User) ? $data['user'] : $applicationContext->getCurrentUser();
-        if($user) {
+        $user = (isset($data['user']) && $data['user'] instanceof User)
+            ? $data['user']
+            : $applicationContext->getCurrentUser();
+
+        if ($user) {
             $this->replaceText('[user:first_name]', $user->getFirstname(), $text);
         }
 

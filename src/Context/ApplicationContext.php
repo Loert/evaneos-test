@@ -1,5 +1,7 @@
 <?php
 
+namespace App;
+
 use Faker\Factory;
 use App\Helper\SingletonTrait;
 use App\Entity\Site;
