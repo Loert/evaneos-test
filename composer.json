@@ -1,5 +1,7 @@
 {
     "name": "loert/testevaneos",
+    "description": "The Thomas Rollet's test for Evaneos recruitment",
+    "license": "proprietary",
     "require": {
         "php": "^7.1",
         "ext-mbstring": "*",
