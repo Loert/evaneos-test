@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * Class DestinationRepository
+ */
 class DestinationRepository implements Repository
 {
     use SingletonTrait;
@@ -9,7 +12,7 @@ class DestinationRepository implements Repository
      *
      * @return Destination
      */
-    public function getById($id)
+    public function getById($id): Destination
     {
         // DO NOT MODIFY THIS METHOD
 

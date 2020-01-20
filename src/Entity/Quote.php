@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * Class Quote
+ */
 class Quote
 {
     public $id;
@@ -7,6 +10,13 @@ class Quote
     public $destinationId;
     public $dateQuoted;
 
+    /**
+     * Quote constructor.
+     * @param $id
+     * @param $siteId
+     * @param $destinationId
+     * @param $dateQuoted
+     */
     public function __construct($id, $siteId, $destinationId, $dateQuoted)
     {
         $this->id = $id;
@@ -15,12 +25,20 @@ class Quote
         $this->dateQuoted = $dateQuoted;
     }
 
-    public static function renderHtml(Quote $quote)
+    /**
+     * @param Quote $quote
+     * @return string
+     */
+    public static function renderHtml(Quote $quote): string
     {
         return '<p>' . $quote->id . '</p>';
     }
 
-    public static function renderText(Quote $quote)
+    /**
+     * @param Quote $quote
+     * @return string
+     */
+    public static function renderText(Quote $quote): string
     {
         return (string) $quote->id;
     }
