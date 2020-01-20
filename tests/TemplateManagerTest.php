@@ -4,8 +4,8 @@ use App\Entity\Quote;
 use App\Entity\Template;
 use App\Repository\DestinationRepository;
 use Faker\Factory;
-require_once __DIR__ . '/../src/Context/ApplicationContext.php';
-require_once __DIR__ . '/../src/TemplateManager.php';
+use App\ApplicationContext;
+use App\Manager\TemplateManager;
 
 class TemplateManagerTest extends PHPUnit_Framework_TestCase
 {
