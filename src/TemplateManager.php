@@ -38,31 +38,36 @@ class TemplateManager
             $site = SiteRepository::getInstance()->getById($quote->siteId);
             $destination = DestinationRepository::getInstance()->getById($quote->destinationId);
 
-            $containsSummaryHtml = strpos($text, '[quote:summary_html]');
-            $containsSummary = strpos($text, '[quote:summary]');
-
-            if ($containsSummaryHtml !== false) {
-                $text = str_replace('[quote:summary_html]', Quote::renderHtml($quote), $text);
-            }
-            if ($containsSummary !== false) {
-                $text = str_replace('[quote:summary]', Quote::renderText($quote), $text);
-            }
-
-            (strpos($text, '[quote:destination_name]') !== false) and $text = str_replace('[quote:destination_name]',$destination->countryName,$text);
+            $this->replaceText('[quote:summary_html]', Quote::renderHtml($quote), $text);
+            $this->replaceText('[quote:summary]', Quote::renderText($quote), $text);
+            $this->replaceText('[quote:destination_name]', $destination->countryName, $text);
         }
 
         if (isset($destination)) {
-            $text = str_replace('[quote:destination_link]', $site->url . '/' . $destination->countryName . '/quote/' . $quote->id, $text);
+            $replaceData = $site->url . '/' . $destination->countryName . '/quote/' . $quote->id;
+            $this->replaceText('[quote:destination_link]', $replaceData, $text);
         }
         else {
-            $text = str_replace('[quote:destination_link]', '', $text);
+            $this->replaceText('[quote:destination_link]', '', $text);
         }
 
         $user = (isset($data['user']) and ($data['user']  instanceof User)) ? $data['user'] : $applicationContext->getCurrentUser();
         if($user) {
-            (strpos($text, '[user:first_name]') !== false) and $text = str_replace('[user:first_name]', ucfirst(mb_strtolower($user->firstname)), $text);
+            $this->replaceText('[user:first_name]', ucfirst(mb_strtolower($user->firstname)), $text);
         }
 
         return $text;
+    }
+
+    /**
+     * @param string $key
+     * @param string $value
+     * @param $text
+     */
+    private function replaceText(string $key, string $value, string &$text): void
+    {
+        if (strpos($text, $key) !== false && $text !== null && strlen($text) > 0) {
+            $text = str_replace($key, $value, $text);
+        }
     }
 }
