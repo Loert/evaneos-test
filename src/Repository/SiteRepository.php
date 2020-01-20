@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * Class SiteRepository
+ */
 class SiteRepository implements Repository
 {
     use SingletonTrait;
@@ -9,7 +12,7 @@ class SiteRepository implements Repository
      *
      * @return Site
      */
-    public function getById($id)
+    public function getById($id): Site
     {
         // DO NOT MODIFY THIS METHOD
         $faker = Faker\Factory::create();

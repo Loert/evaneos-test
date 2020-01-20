@@ -1,5 +1,10 @@
 <?php
 
+use Faker\Factory;
+
+/**
+ * Class QuoteRepository
+ */
 class QuoteRepository implements Repository
 {
     use SingletonTrait;
@@ -9,9 +14,9 @@ class QuoteRepository implements Repository
      *
      * @return Quote
      */
-    public function getById($id)
+    public function getById($id): Quote
     {
-        $generator = Faker\Factory::create();
+        $generator = Factory::create();
         $generator->seed($id);
         return new Quote(
             $id,
