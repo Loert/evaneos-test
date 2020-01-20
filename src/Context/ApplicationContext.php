@@ -1,6 +1,9 @@
 <?php
 
 use Faker\Factory;
+use App\Helper\SingletonTrait;
+use App\Entity\Site;
+use App\Entity\User;
 
 /**
  * Class ApplicationContext
