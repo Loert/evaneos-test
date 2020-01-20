@@ -13,19 +13,21 @@ require_once __DIR__ . '/../src/Repository/QuoteRepository.php';
 require_once __DIR__ . '/../src/Repository/SiteRepository.php';
 require_once __DIR__ . '/../src/TemplateManager.php';
 
+use Faker\Factory;
+
 class TemplateManagerTest extends PHPUnit_Framework_TestCase
 {
     /**
      * Init the mocks
      */
-    public function setUp()
+    public function setUp(): void
     {
     }
 
     /**
      * Closes the mocks
      */
-    public function tearDown()
+    public function tearDown(): void
     {
     }
 
@@ -34,12 +36,12 @@ class TemplateManagerTest extends PHPUnit_Framework_TestCase
      */
     public function test()
     {
-        $faker = \Faker\Factory::create();
+        $faker = Factory::create();
 
         $expectedDestination = DestinationRepository::getInstance()->getById($faker->randomNumber());
         $expectedUser = ApplicationContext::getInstance()->getCurrentUser();
 
-        $quote = new Quote($faker->randomNumber(), $faker->randomNumber(), $faker->randomNumber(), $faker->date());
+        $quote = new Quote($faker->randomNumber(), $faker->randomNumber(), $expectedDestination->id, $faker->date());
 
         $template = new Template(
             1,

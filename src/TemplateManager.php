@@ -13,7 +13,7 @@ class TemplateManager
     public function getTemplateComputed(Template $tpl, array $data): Template
     {
         if (!$tpl) {
-            throw new \RuntimeException('no tpl given');
+            throw new RuntimeException('no tpl given');
         }
 
         $replaced = clone($tpl);
