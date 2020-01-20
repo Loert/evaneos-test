@@ -1,5 +1,11 @@
 <?php
 
+use App\Entity\Template;
+use App\Entity\Quote;
+use App\Repository\QuoteRepository;
+use App\Repository\SiteRepository;
+use App\Repository\DestinationRepository;
+
 /**
  * Class TemplateManager
  */
