@@ -57,9 +57,9 @@ class TemplateManager
             $this->replaceText('[quote:destination_link]', '', $text);
         }
 
-        $user = (isset($data['user']) and ($data['user']  instanceof User)) ? $data['user'] : $applicationContext->getCurrentUser();
+        $user = (isset($data['user']) && $data['user']  instanceof User) ? $data['user'] : $applicationContext->getCurrentUser();
         if($user) {
-            $this->replaceText('[user:first_name]', ucfirst(mb_strtolower($user->firstname)), $text);
+            $this->replaceText('[user:first_name]', $user->getFirstname(), $text);
         }
 
         return $text;
