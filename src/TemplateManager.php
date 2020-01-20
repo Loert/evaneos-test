@@ -1,8 +1,16 @@
 <?php
 
+/**
+ * Class TemplateManager
+ */
 class TemplateManager
 {
-    public function getTemplateComputed(Template $tpl, array $data)
+    /**
+     * @param Template $tpl
+     * @param array $data
+     * @return Template
+     */
+    public function getTemplateComputed(Template $tpl, array $data): Template
     {
         if (!$tpl) {
             throw new \RuntimeException('no tpl given');
@@ -15,6 +23,11 @@ class TemplateManager
         return $replaced;
     }
 
+    /**
+     * @param $text
+     * @param array $data
+     * @return mixed
+     */
     private function computeText($text, array $data)
     {
         $APPLICATION_CONTEXT = ApplicationContext::getInstance();
