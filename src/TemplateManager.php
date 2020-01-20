@@ -6,21 +6,21 @@
 class TemplateManager
 {
     /**
-     * @param Template $tpl
+     * @param Template $template
      * @param array $data
      * @return Template
      */
-    public function getTemplateComputed(Template $tpl, array $data): Template
+    public function getTemplateComputed(Template $template, array $data): Template
     {
-        if (!$tpl) {
-            throw new RuntimeException('no tpl given');
+        if (!$template) {
+            throw new RuntimeException('No template given');
         }
 
-        $replaced = clone($tpl);
-        $replaced->subject = $this->computeText($replaced->subject, $data);
-        $replaced->content = $this->computeText($replaced->content, $data);
+        $computedTemplate = clone($template);
+        $computedTemplate->subject = $this->computeText($computedTemplate->subject, $data);
+        $computedTemplate->content = $this->computeText($computedTemplate->content, $data);
 
-        return $replaced;
+        return $computedTemplate;
     }
 
     /**
