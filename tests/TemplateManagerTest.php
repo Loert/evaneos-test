@@ -1,45 +1,44 @@
 <?php
 
-require_once __DIR__ . '/../src/Entity/Destination.php';
-require_once __DIR__ . '/../src/Entity/Quote.php';
-require_once __DIR__ . '/../src/Entity/Site.php';
-require_once __DIR__ . '/../src/Entity/Template.php';
-require_once __DIR__ . '/../src/Entity/User.php';
-require_once __DIR__ . '/../src/Helper/SingletonTrait.php';
-require_once __DIR__ . '/../src/Context/ApplicationContext.php';
-require_once __DIR__ . '/../src/Repository/Repository.php';
-require_once __DIR__ . '/../src/Repository/DestinationRepository.php';
-require_once __DIR__ . '/../src/Repository/QuoteRepository.php';
-require_once __DIR__ . '/../src/Repository/SiteRepository.php';
-require_once __DIR__ . '/../src/TemplateManager.php';
+use App\Entity\Quote;
+use App\Entity\Template;
+use App\Repository\DestinationRepository;
+use Faker\Factory;
+use App\ApplicationContext;
+use App\Manager\TemplateManager;
 
 class TemplateManagerTest extends PHPUnit_Framework_TestCase
 {
     /**
+     * @var TemplateManager
+     */
+    private $templateManager;
+
+    /**
      * Init the mocks
      */
-    public function setUp()
+    public function setUp(): void
     {
+        $this->templateManager = new TemplateManager();
     }
 
     /**
      * Closes the mocks
      */
-    public function tearDown()
+    public function tearDown(): void
     {
     }
 
     /**
      * @test
      */
-    public function test()
+    public function testGetTemplateComputedOnSuccess()
     {
-        $faker = \Faker\Factory::create();
-
+        $faker = Factory::create();
         $expectedDestination = DestinationRepository::getInstance()->getById($faker->randomNumber());
         $expectedUser = ApplicationContext::getInstance()->getCurrentUser();
 
-        $quote = new Quote($faker->randomNumber(), $faker->randomNumber(), $faker->randomNumber(), $faker->date());
+        $quote = new Quote($faker->randomNumber(), $faker->randomNumber(), $expectedDestination->id, $faker->date());
 
         $template = new Template(
             1,
@@ -54,9 +53,8 @@ Bien cordialement,
 L'équipe Evaneos.com
 www.evaneos.com
 ");
-        $templateManager = new TemplateManager();
 
-        $message = $templateManager->getTemplateComputed(
+        $message = $this->templateManager->getTemplateComputed(
             $template,
             [
                 'quote' => $quote
@@ -74,5 +72,11 @@ Bien cordialement,
 L'équipe Evaneos.com
 www.evaneos.com
 ", $message->content);
+    }
+
+    public function testGetTemplateComputedOnRuntimeException(){
+        $this->expectException('RuntimeException');
+
+        $this->templateManager->getTemplateComputed(null, []);
     }
 }
