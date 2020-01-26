@@ -1,5 +1,7 @@
 # Evaneos technical test
 
+![Super Runner](https://github.com/Loert/evaneos-test/workflows/Super%20Runner/badge.svg)
+
 ## Prerequisite
 
 - PHP 7.1
@@ -26,9 +28,10 @@ You can run units tests with :
 - Added code coverage for unit tests
 - Setting up namespaces within the application
 - Cleaning and simplification of the code of the `TemplateManager` class (naming of variables, deletion of unnecessary conditions, creation of a method for replacing values)
+- Create services to compute each text placeholder categories
 - Code compliance with PSR-12 standards
-- Added a unit test for the Runtime Exception in `TemplateManager`
-- Setting up a runner in the repository to validate the whole code on push
+- Add units tests to get a coverage of 100% on `Context`, `Repository`, `Service` and `TemplateManager`
+- Setting up a runner in the repository to validate the whole code and run units tests on push
 
 The objective of these different actions was to make the code more pleasant to maintain as well as to make it closer to what can be found in today's PHP frameworks.
 
