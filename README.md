@@ -1,6 +1,6 @@
 # Evaneos technical test
 
-![Super Runner](https://github.com/Loert/evaneos-test/workflows/Super%20Runner/badge.svg)
+![Super Runner](https://github.com/Loert/evaneos-test/workflows/Super%20Runner/badge.svg?branch=master)
 
 ## Prerequisite
 
