@@ -44,11 +44,10 @@ class TemplateManager
             throw new RuntimeException('No template given');
         }
 
-        $computedTemplate = clone($template);
-        $computedTemplate->subject = $this->computeText($computedTemplate->subject, $data);
-        $computedTemplate->content = $this->computeText($computedTemplate->content, $data);
+        $template->subject = $this->computeText($template->subject, $data);
+        $template->content = $this->computeText($template->content, $data);
 
-        return $computedTemplate;
+        return $template;
     }
 
     /**

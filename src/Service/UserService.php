@@ -28,15 +28,9 @@ class UserService extends AbstractService
      */
     public function compute(string $text, array $data): string
     {
-        if (isset($data['user']) && $data['user'] instanceof User) {
-            $user = $data['user'];
-        } else {
-            $user = $this->applicationContext->getCurrentUser();
-        }
+        $user = $this->getUser($data);
 
-        $text = $this->replace($text, $user);
-
-        return $text;
+        return $this->replace($text, $user);
     }
 
     /**
@@ -49,5 +43,18 @@ class UserService extends AbstractService
         $text = $this->replaceText('[user:first_name]', $user->getFirstname(), $text);
 
         return $text;
+    }
+
+    /**
+     * @param array $data
+     * @return User
+     */
+    private function getUser(array $data): User
+    {
+        if (isset($data['user']) && $data['user'] instanceof User) {
+            return $data['user'];
+        } else {
+            return $this->applicationContext->getCurrentUser();
+        }
     }
 }
