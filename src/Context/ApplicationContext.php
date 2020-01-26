@@ -48,4 +48,12 @@ class ApplicationContext
     {
         return $this->currentUser;
     }
+
+    /**
+     * @param User $user
+     */
+    public function setCurrentUser(User $user): void
+    {
+        $this->currentUser = $user;
+    }
 }

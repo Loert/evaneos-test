@@ -38,6 +38,8 @@ class UserService extends AbstractService
     protected function replace(string $text, $user): string
     {
         $text = $this->replaceText('[user:first_name]', $user->getFirstname(), $text);
+        $text = $this->replaceText('[user:last_name]', $user->getLastname(), $text);
+        $text = $this->replaceText('[user:email]', $user->getEmail(), $text);
 
         return $text;
     }
