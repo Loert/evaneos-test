@@ -57,6 +57,7 @@ class TemplateManager
     {
         $text = $this->quoteService->compute($text, $data);
         $text = $this->userService->compute($text, $data);
+        //Add others computers above
 
         return $text;
     }
