@@ -7,7 +7,6 @@ namespace App\Service;
  * @package App\Service
  */
 abstract class AbstractService {
-
     /**
      * @param string $text
      * @param array $data
@@ -20,7 +19,7 @@ abstract class AbstractService {
      * @param $object
      * @return string
      */
-    public abstract function replace(string $text, $object): string;
+    protected abstract function replace(string $text, $object): string;
 
     /**
      * @param string $key
@@ -30,10 +29,9 @@ abstract class AbstractService {
      */
     protected function replaceText(string $key, string $value, string $text): string
     {
-        if (strpos($text, $key) !== false && $text !== null && strlen($text) > 0) {
+        if ($text !== null && strlen($text) > 0 && strpos($text, $key) !== false) {
             $text = str_replace($key, $value, $text);
         }
-
         return $text;
     }
 }
