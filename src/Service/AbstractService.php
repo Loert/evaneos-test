@@ -32,10 +32,10 @@ abstract class AbstractService {
 
     /**
      * @param string $text
-     * @param $object
+     * @param $entity
      * @return string
      */
-    protected abstract function replace(string $text, $object): string;
+    protected abstract function replace(string $text, $entity): string;
 
     /**
      * @param string $key
