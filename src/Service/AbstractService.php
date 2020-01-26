@@ -2,11 +2,27 @@
 
 namespace App\Service;
 
+use App\ApplicationContext;
+
 /**
  * Class AbstractService
  * @package App\Service
  */
 abstract class AbstractService {
+
+    /**
+     * @var ApplicationContext
+     */
+    protected $applicationContext;
+
+    /**
+     * AbstractService constructor.
+     */
+    public function __construct()
+    {
+        $this->applicationContext = ApplicationContext::getInstance();
+    }
+
     /**
      * @param string $text
      * @param array $data

@@ -27,6 +27,8 @@ class QuoteService extends AbstractService
      */
     public function __construct()
     {
+        parent::__construct();
+
         $this->destinationRepository = new DestinationRepository();
         $this->siteRepository = new SiteRepository();
     }

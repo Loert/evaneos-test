@@ -29,6 +29,7 @@ You can run units tests with :
 - Code compliance with PSR-12 standards
 - Added a unit test for the Runtime Exception in `TemplateManager`
 - Setting up a runner in the repository to validate the whole code on push
+- Create services to compute each text placeholder categories
 
 The objective of these different actions was to make the code more pleasant to maintain as well as to make it closer to what can be found in today's PHP frameworks.
 
