@@ -8,7 +8,8 @@ use App\ApplicationContext;
  * Class AbstractService
  * @package App\Service
  */
-abstract class AbstractService {
+abstract class AbstractService
+{
 
     /**
      * @var ApplicationContext
@@ -28,14 +29,14 @@ abstract class AbstractService {
      * @param array $data
      * @return string
      */
-    public abstract function compute(string $text, array $data): string;
+    abstract public function compute(string $text, array $data): string;
 
     /**
      * @param string $text
      * @param $entity
      * @return string
      */
-    protected abstract function replace(string $text, $entity): string;
+    abstract protected function replace(string $text, $entity): string;
 
     /**
      * @param string $key
