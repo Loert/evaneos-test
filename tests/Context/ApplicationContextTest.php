@@ -20,13 +20,6 @@ class ApplicationContextTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * Closes the mocks
-     */
-    public function tearDown(): void
-    {
-    }
-
-    /**
      * Test that ApplicationContext getCurrentSite() method return an instance of Site
      */
     public function testGetCurrentSite()
