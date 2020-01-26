@@ -2,10 +2,7 @@
 
 namespace App\Service;
 
-use App\Entity\Quote;
 use App\Entity\User;
-use App\Repository\DestinationRepository;
-use App\Repository\SiteRepository;
 
 /**
  * Class UserService

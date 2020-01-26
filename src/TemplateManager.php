@@ -3,11 +3,9 @@
 namespace App\Manager;
 
 use App\Entity\Template;
-use App\Entity\User;
 use App\Service\QuoteService;
 use App\Service\UserService;
 use RuntimeException;
-use App\ApplicationContext;
 
 /**
  * Class TemplateManager
