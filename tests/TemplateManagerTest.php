@@ -74,7 +74,8 @@ www.evaneos.com
 ", $message->content);
     }
 
-    public function testGetTemplateComputedOnRuntimeException(){
+    public function testGetTemplateComputedOnRuntimeException()
+    {
         $this->expectException('RuntimeException');
 
         $this->templateManager->getTemplateComputed(null, []);
