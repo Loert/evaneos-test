@@ -36,7 +36,7 @@ class ApplicationContextTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test that ApplicationContext getCurrentSite() method return an instance of User
+     * Test that ApplicationContext getCurrentUser() method return an instance of User
      */
     public function testGetCurrentUser()
     {
