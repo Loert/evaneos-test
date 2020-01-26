@@ -23,13 +23,6 @@ class TemplateManagerTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * Closes the mocks
-     */
-    public function tearDown(): void
-    {
-    }
-
-    /**
      * @test
      */
     public function testGetTemplateComputedOnSuccess()
