@@ -1,4 +1,4 @@
-name: PHP PSR-12 Validation
+name: Super Runner
 
 on: [push]
 
@@ -19,8 +19,5 @@ jobs:
     - name: Run PSR-12 Validation
       run: vendor/bin/phpcs src --standard=PSR12
 
-    # Add a test script to composer.json, for instance: "test": "vendor/bin/phpunit"
-    # Docs: https://getcomposer.org/doc/articles/scripts.md
-
-    # - name: Run test suite
-    #   run: composer run-script test
+    - name: Run test suite
+      run: vendor/phpunit/phpunit/phpunit -c phpunit.xml --coverage-clover=coverage.xml
